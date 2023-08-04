@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import PrimaryButton from "./components/PrimaryButton";
+import ThresholdInput from "./components/ThresholdInput";
+import thresholdContext from "./utils/thresholdContext";
+import Image from "./components/Image";
 
 function App() {
+  const [threshold, setThreshold] = useState({
+    limit: 10,
+    boopsCount: 0,
+    bipsCount: 0,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <thresholdContext.Provider
+      value={{
+        threshold: threshold,
+        setThreshold: setThreshold,
+      }}
+    >
+      <div className="App">
+        <Header></Header>
+        <div className="main">
+          <ThresholdInput></ThresholdInput>
+          <div className="flex-container">
+            <PrimaryButton title="Boop"></PrimaryButton>
+            <Image></Image>
+            <PrimaryButton title="Bip"></PrimaryButton>
+          </div>
+        </div>
+      </div>
+    </thresholdContext.Provider>
   );
 }
 

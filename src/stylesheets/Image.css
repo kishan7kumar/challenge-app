@@ -1,0 +1,15 @@
+.image-container {
+  padding: 0rem 2rem;
+}
+
+.image-container img {
+  height: 220px;
+  width: 300px;
+}
+
+@media only screen and (max-width: 480px) {
+  .image-container {
+    order: 3;
+    padding: 0;
+  }
+}
